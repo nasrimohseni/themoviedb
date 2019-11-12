@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="af.nasri.imdb.model.Movie" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!-- Movie Poster -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/ivMovieListPoster"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,2:3"
+            app:layout_constraintEnd_toEndOf="@id/glMoviePoster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:placeholderImage="@color/colorPlaceHolder"
+            app:roundedCornerRadius="8dp"
+            bind:posterPath="@{movie.posterPath}" />
+        <!-- Movie Title -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMovieListTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{movie.title}"
+            android:textColor="@color/colorGray"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/glMoviePoster"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            tools:text="Avengers: Endgame" />
+        <!-- Movie Release Date -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMovieListReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{movie.releaseDate}"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvMovieListTitle"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/glMoviePoster"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieListTitle"
+            app:layout_constraintVertical_bias="0"
+            tools:text="2019-10-04" />
+        <!-- Movie Popularity -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMovieListVoteCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{Double.toString(movie.popularity)}"
+            android:textColor="@color/colorGray"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tvMovieListTitle"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/tvMovieListReleaseDate"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieListTitle"
+            app:layout_constraintVertical_bias="0"
+            tools:text="5228" />
+        <!-- Movie Overview -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMovieListVoteOverview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:text="@{movie.overview}"
+            android:textColor="@color/colorGrayLight"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/glMoviePoster"
+            app:layout_constraintTop_toBottomOf="@id/tvMovieListReleaseDate"
+            app:layout_constraintVertical_bias="0"
+            tools:text="@tools:sample/lorem/random" />
+        <!-- Movie Rating -->
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvMovieListRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rating"
+            android:padding="8dp"
+            android:text="@{Double.toString(movie.voteAverage)}"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/ivMovieListPoster"
+            app:layout_constraintEnd_toEndOf="@id/ivMovieListPoster"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="@id/ivMovieListPoster"
+            app:layout_constraintTop_toTopOf="@id/ivMovieListPoster"
+            app:layout_constraintVertical_bias="1"
+            tools:text="8.2" />
+        <!-- GuideLine for defining image width according to 35% of screen width -->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glMoviePoster"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
