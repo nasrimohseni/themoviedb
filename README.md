@@ -2,7 +2,7 @@
 The IMDB android app developed using Android Architecture Components (MVVM).
 
 <p align="center">
-<img src="https://github.com/nasrimohseni/themoviedb/blob/master/Screenshot_2019-11-16-09-31-25-503_af.nasri.imdb.jpg" width="50%"/>
+<img src="https://github.com/nasrimohseni/themoviedb/blob/master/Screenshot_2019-11-16-09-31-25-503_af.nasri.imdb.jpg" width="30%" style="box-shadow:0px 0px 20px gray; border-radius:8px;"/>
 </p>
 
 ## Android Architecture Components and other libs Used
