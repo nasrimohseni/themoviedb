@@ -1,7 +1,7 @@
 # TheMovieDB
 The IMDB android app developed using Android Architecture Components (MVVM).
 
-![App Screenshot](https://github.com/nasrimohseni/themoviedb/blob/master/Screenshot_2019-11-16-09-31-25-503_af.nasri.imdb.jpg) | width=300
+![App Screenshot](https://github.com/nasrimohseni/themoviedb/blob/master/Screenshot_2019-11-16-09-31-25-503_af.nasri.imdb.jpg | width=300)
 
 ## Android Architecture Components and other libs Used
 * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel)
