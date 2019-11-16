@@ -9,6 +9,6 @@ import retrofit2.http.Query;
 public interface ApiServices {
 
     @GET(ApiEndpoints.DISCOVER_MOVIE)
-    Call<Popular> getPopularMovies(@Query(Constants.SORT_BY) String sortBy);
+    Call<Popular> getPopularMovies(@Query(Constants.SORT_BY) String sortBy, @Query(Constants.PAGE) Long page);
 
 }

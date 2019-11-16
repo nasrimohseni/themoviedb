@@ -1,8 +1,10 @@
 package af.nasri.imdb.model;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.annotations.Expose;
@@ -215,5 +217,17 @@ public class Movie extends BaseObservable {
     public static void setImageUri(SimpleDraweeView simpleDraweeView, String imageUrl) {
         simpleDraweeView.setImageURI(ApiEndpoints.PICTURES_PATH + imageUrl);
     }
+
+    public static final DiffUtil.ItemCallback<Movie> CALLBACK = new DiffUtil.ItemCallback<Movie>() {
+        @Override
+        public boolean areItemsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return oldItem.getId().equals(newItem.getId());
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Movie oldItem, @NonNull Movie newItem) {
+            return true;
+        }
+    };
 
 }

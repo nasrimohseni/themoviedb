@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -15,11 +16,10 @@ import af.nasri.imdb.databinding.ItemMoviesListBinding;
 import af.nasri.imdb.model.Movie;
 import af.nasri.imdb.view.MovieViewHolder;
 
-public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MovieViewHolder> {
+public class MoviesRecyclerAdapter extends PagedListAdapter<Movie,MovieViewHolder> {
 
-    private List<Movie> movieList;
-    public MoviesRecyclerAdapter(List<Movie> movieList) {
-        this.movieList = movieList;
+    public MoviesRecyclerAdapter() {
+        super(Movie.CALLBACK);
     }
 
     @NonNull
@@ -31,11 +31,7 @@ public class MoviesRecyclerAdapter extends RecyclerView.Adapter<MovieViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
-        holder.itemMoviesListBinding.setMovie(movieList.get(position));
+        holder.itemMoviesListBinding.setMovie(getItem(position));
     }
 
-    @Override
-    public int getItemCount() {
-        return movieList.size();
-    }
 }

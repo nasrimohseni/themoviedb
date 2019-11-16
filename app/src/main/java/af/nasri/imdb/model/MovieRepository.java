@@ -1,40 +1,32 @@
 package af.nasri.imdb.model;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
-import af.nasri.imdb.app.Constants;
 import af.nasri.imdb.network.ApiClient;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import af.nasri.imdb.network.ApiServices;
 
 public class MovieRepository {
 
-    private static final String TAG = "MovieRepository";
-    private static MutableLiveData<Popular> popularMovies = new MutableLiveData<>();
+    private final String TAG = "MovieRepository";
+    private LiveData<PagedList<Movie>> popularMovies;
+    private MovieDataSourceFactory dataSourceFactory;
+    private ApiServices apiServices;
 
-    public static LiveData<Popular> getPopularMovies() {
+    public MovieRepository() {
+        apiServices = ApiClient.getApiService();
+        dataSourceFactory = new MovieDataSourceFactory(apiServices);
+    }
 
-        ApiClient.getApiService().getPopularMovies(Constants.POPULARITY_DESC).enqueue(new Callback<Popular>() {
-
-            @Override
-            public void onResponse(@NonNull Call<Popular> call, @NonNull Response<Popular> response) {
-                if (response.body() != null) {
-                    popularMovies.postValue(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Popular> call, @NonNull Throwable t) {
-                Log.w(TAG, "onFailure: ", t);
-            }
-
-        });
-
+    LiveData<PagedList<Movie>> getPopularMovies() {
+        PagedList.Config pageListConfig = (new PagedList.Config.Builder())
+                .setEnablePlaceholders(true)
+                .setPageSize(20)
+                .setPrefetchDistance(4)
+                .setInitialLoadSizeHint(10)
+                .build();
+        popularMovies = new LivePagedListBuilder<>(dataSourceFactory, pageListConfig).build();
         return popularMovies;
     }
 

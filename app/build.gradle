@@ -48,4 +48,8 @@ dependencies {
     //  Fresco ImageViewing.
     implementation 'com.facebook.fresco:fresco:2.0.0'
 
+    //  Paging.
+    def paging_version = "2.1.0"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+
 }
